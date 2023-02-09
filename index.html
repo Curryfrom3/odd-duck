@@ -1,30 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odd Duck</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <div class="bg">
-    <body>
-        <h1>Odd Duck Products</h1>
-      <main>
-        <section id="img-container">
-          <img id="img-one" src="" alt="">
-          <img id="img-two" src="" alt="">
-          <img id="img-three" src="" alt="">
-        </section>
-        <button id="show-results-btn">View Results</button>
-      </main>
-      <div>
-        <canvas id="myChart"></canvas>
-      </div>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
-      <script src="app.js"></script>
-      <Footer></Footer>
-    </body>
-  </div>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+  <title>Odd Duck</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<div class="container">
+  <body>
+    <h1 id="welcome">Odd Duck Products</h1>
+    <form>
+      <label for="darkButton">
+        <input type="radio" name="mode" id="darkButton" class="mode" value="dark" />
+        <span>Dark Mode</span>
+      </label>
+      <label for="lightButton">
+        <input type="radio" name="mode" id="lightButton" class="mode" value="light" checked />
+        <span>Light Mode</span>
+      </label>
+    </form>
+    <main>
+      <section id="img-container">
+        <img id="img-one" src="" alt="">
+        <img id="img-two" src="" alt="">
+        <img id="img-three" src="" alt="">
+      </section>
+      <button id="show-results-btn">View Results</button>
+    </main>
+    <div>
+      <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+    <script src="app.js"></script>
+    <Footer></Footer>
+  </body>
+</div>
+
 </html>
