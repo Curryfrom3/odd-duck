@@ -10,8 +10,10 @@
 let pictureArray = [];
 let votingRounds = 25;
 let preIndex = [-1, -1, -1];
-
-
+let settings = {
+  darkMode: false,
+  open: null,
+};
 // DOM WINDOWS
 
 // Line 24-32: The code declares 6 DOM window variables to access HTML elements with the same id as the value:
@@ -22,7 +24,6 @@ let preIndex = [-1, -1, -1];
 // canvasElem: the canvas for displaying the results chart
 
 let imgContainer = document.getElementById('img-container');
-
 let imgOne = document.getElementById('img-one');
 let imgTwo = document.getElementById('img-two');
 let imgThree = document.getElementById('img-three');
@@ -30,6 +31,117 @@ let imgThree = document.getElementById('img-three');
 
 let resultsBtn = document.getElementById('show-results-btn');
 let canvasElem = document.getElementById('myChart');
+
+let mode = document.getElementsByClassName("mode");
+
+function enterDarkMode() {
+  let body = document.body;
+  let welcome = document.getElementById("welcome");
+  let button = document.getElementById("darkButton");
+  body.classList.remove("light");
+  welcome.classList.remove("light");
+  body.classList.add("dark");
+  welcome.classList.add("dark");
+  button.setAttribute("checked", "checked");
+  //the datta we want to save round to round
+  settings.darkMode = true;
+
+  // update value in localStorage:
+  saveSettings()
+}
+
+function enterLightMode() {
+  let body = document.body;
+  let welcome = document.getElementById("welcome");
+  let button = document.getElementById("lightButton");
+  body.classList.remove("dark");
+  welcome.classList.remove("dark");
+  body.classList.add("light");
+  welcome.classList.add("light");
+  button.setAttribute("checked", "checked");
+ 
+  // data to save in local storage:
+  settings.darkMode = false;
+
+  // update value in localStorage:
+  saveSettings();
+}
+
+function saveSettings() {
+  console.log(settings);
+
+  // pack it: turn the data into a string
+  let stringify = JSON.stringify(settings);
+  console.log(stringify)
+
+  // label it (AKA key). Our is "settings"
+  // store it
+  localStorage.setItem('settings', stringify);
+}
+
+// function applySettings() {
+//   // we get it using the key we picked (in this case 'settings');
+//   let getSettings = localStorage.getItem('settings');
+//   // unpack the data (change it back into JavaScript, not a string)
+//   let parsedData = JSON.parse(getSettings);
+//   console.log(parsedData);
+
+//   // update the value of the global varriable setting
+//   // with these new values
+//   settings = parsedData;
+// }
+
+// get the data from localStorage
+function pageLoad() {
+  // we get it using the key we picked (in this case 'settings');
+  let getSettings = localStorage.getItem('settings');
+
+  // confirm that data was data was returned from localStorage
+  if (getSettings) {
+    console.log(getSettings);
+    // applySettings();
+
+    // unpack the data (change it back into JavaScript, not a string)
+    let parsedData = JSON.parse(getSettings);
+    console.log(parsedData);
+
+    // update the value of the global varriable setting
+    // with these new values
+    settings = parsedData;
+
+    if (settings.darkMode) {
+      enterDarkMode();
+    } else {
+      enterLightMode();
+    }
+    if (settings.open !== null) {
+      details[settings.open].setAttribute('open', 'open');
+    }
+    
+  } else {
+    // if there is no data in localStorage, exist the function
+    return;
+  }
+
+}
+
+// add event listener to dark mode form
+for (let i = 0; i < mode.length; i++) {
+  mode[i].addEventListener("click", function () {
+    // change styling of background and text color
+    if (this.value === "dark") {
+      enterDarkMode();
+    }
+    if (this.value === "light") {
+      enterLightMode();
+    }
+  });
+}
+
+// load the page with the saved settings
+pageLoad();
+
+
 
 // CONSTRUCTOR FUNCTION
 
