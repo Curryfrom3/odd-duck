@@ -249,6 +249,8 @@ function renderChart() {
 
 // Line 140-160: The code declares a handleClick() function to handle the click event on the images. The function first retrieves the title of the clicked image and uses a for loop to find the corresponding RandomImage object in the pictureArray. It increments the votes property of the RandomImage object by 1 and decrements the votingRounds by 1. The function calls the renderImg() function to display the next set of images and checks if the votingRounds equals 0. If so, it removes the click event handler on the imgContainer. The function also stringifies the pictureArray and stores it in local storage under the key 'myPictures'.
 
+
+
 function handleClick(event) {
 
   let imgClicked = event.target.title;
